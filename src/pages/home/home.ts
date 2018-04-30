@@ -13,6 +13,7 @@ import { HTTP } from '@ionic-native/http';
 })
 export class HomePage {
   
+  
  
   
   public longitude: any;
@@ -26,9 +27,10 @@ export class HomePage {
   public currentweatherMain: any;
   public currentweatherDesc: any;
   public currentHumidity: any;
-  public currentWind: any;
+  public currentWind: number;
   public currentCountry: any;
   public currentCity: any;
+  public currentIcon: any;
 
   constructor(public navCtrl: NavController, public geo: Geolocation, private platform: Platform, public http: HTTP) {
     this.platform.ready().then(() => {
@@ -51,9 +53,10 @@ export class HomePage {
           this.currentweatherMain= weatherData.weather[0].main;
           this.currentweatherDesc= weatherData.weather[0].description;
           this.currentHumidity= weatherData.main.humidity;
-          this.currentWind= weatherData.wind.speed;
+          this.currentWind= (weatherData.wind.speed)*3.6;
           this.currentCountry= weatherData.sys.country;
           this.currentCity= weatherData.name;
+          this.currentIcon= weatherData.weather[0].icon;
        
       
         })
